@@ -3,6 +3,7 @@
 services:
   erp:
     build: .
+    env_file: .env  # Cette ligne est ajoutée pour charger les variables d'environnement
     ports:
       - "8003:8069"
     volumes:
@@ -13,9 +14,6 @@ services:
       - db
       
     container_name: formation_erp
-
-    # command: odoo -u base
-    # command: odoo scaffold formation_Sup /mnt/extra-addons/
 
     networks:
       - erpnet
