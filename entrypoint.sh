@@ -60,9 +60,9 @@
     echo "Démarrage du serveur Odoo en mode normal..."
     # Exécute la commande Odoo principale pour un fonctionnement normal
     # Le --master-passwd n'est PAS nécessaire ici car la DB est déjà initialisée
-    # IMPORTANT : Nous spécifions explicitement le chemin complet de l'exécutable Odoo.
-    # Nous ne passons PAS "$@" ici car il contiendrait "odoo" en double.
-    exec /usr/bin/python3 /usr/bin/odoo \
+    # IMPORTANT : Exécutez directement le binaire Odoo avec ses arguments.
+    # Le shebang dans /usr/bin/odoo se chargera d'appeler python3.
+    exec /usr/bin/odoo \
         --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
         --db_host="$HOST" \
         --db_port="$PORT" \
