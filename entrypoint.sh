@@ -59,11 +59,11 @@
     echo "Démarrage du serveur Odoo en mode normal..."
     # Exécute la commande Odoo principale pour un fonctionnement normal
     # Le --master-passwd n'est PAS nécessaire ici car la DB est déjà initialisée
-    # IMPORTANT : --addons-path est maintenant géré par la variable d'environnement ODOO_ADDONS_PATH
+    # IMPORTANT : Le CMD du Dockerfile est géré par l'ENTRYPOINT.
+    # Nous ne passons PAS "$@" ici car il contiendrait "odoo" en double.
     exec /usr/bin/odoo -c /etc/odoo/odoo.conf \
         --db_host="$HOST" \
         --db_port="$PORT" \
         --db_user="$USER" \
-        --db_password="$PASSWORD" \
-        "$@" # Passe les arguments du CMD (ici "odoo" seul)
+        --db_password="$PASSWORD"
     
