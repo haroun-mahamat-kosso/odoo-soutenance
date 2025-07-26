@@ -30,8 +30,6 @@
     # La fonction db_is_initialized retourne 0 si la table existe (DB initialisée), 1 sinon.
     # On veut initialiser si la table n'existe PAS (donc si db_is_initialized retourne 1)
     if [ "$(db_is_initialized)" != "1" ]; then
-        echo "La base de données Odoo '$DB_NAME' est déjà initialisée."
-    else
         echo "La base de données Odoo '$DB_NAME' n'est PAS initialisée. Tentative d'initialisation du module 'base'..."
         # Initialise la base de données avec le module 'base'
         # --stop-after-init : Odoo s'arrêtera après l'initialisation
@@ -40,7 +38,7 @@
         /usr/bin/python3 /usr/bin/odoo -d "$DB_NAME" \
             --init base \
             --stop-after-init \
-            --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/var/lib/odoo/addons/16.0,/mnt/extra-addons \
+            --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
             --db_host="$HOST" \
             --db_port="$PORT" \
             --db_user="$USER" \
@@ -55,12 +53,14 @@
             echo "ERREUR : La commande d'initialisation de la base de données Odoo a échoué avec le code de sortie $?."
             exit 1 # Quitte le script si l'initialisation échoue
         fi
+    else
+        echo "La base de données Odoo '$DB_NAME' est déjà initialisée."
     fi
 
     echo "Démarrage du serveur Odoo en mode normal..."
     # Exécute la commande Odoo principale, en passant tous les arguments reçus par le script
     exec /usr/bin/python3 /usr/bin/odoo \
-        --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/var/lib/odoo/addons/16.0,/mnt/extra-addons \
+        --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
         --db_host="$HOST" \
         --db_port="$PORT" \
         --db_user="$USER" \
