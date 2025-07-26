@@ -60,7 +60,7 @@
     echo "Démarrage du serveur Odoo en mode normal..."
     # Exécute la commande Odoo principale pour un fonctionnement normal
     # Le --master-passwd n'est PAS nécessaire ici car la DB est déjà initialisée
-    # La ligne "odoo \" a été supprimée ci-dessous car elle était redondante avec "$@"
+    # IMPORTANT : Assurez-vous qu'il n'y a PAS de "odoo" supplémentaire avant "$@"
     exec /usr/bin/python3 /usr/bin/odoo \
         --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
         --db_host="$HOST" \
