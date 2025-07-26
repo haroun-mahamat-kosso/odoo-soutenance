@@ -1,0 +1,39 @@
+<!-- /addons/facture_personnalise/reports/facture_personnalise_report.xml -->
+<odoo>
+    <template id="report_facture_personnalise">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <h2>Facture : <t t-esc="doc.name"/></h2>
+                <p>Client : <t t-esc="doc.customer_id.name"/></p>
+                <p>Date : <t t-esc="doc.date"/></p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Quantité</th>
+                            <th>Prix unitaire</th>
+                            <th>Montant</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="doc.invoice_lines" t-as="line">
+                            <td><t t-esc="line.product_id.name"/></td>
+                            <td><t t-esc="line.quantity"/></td>
+                            <td><t t-esc="line.price_unit"/></td>
+                            <td><t t-esc="line.amount"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Total : <t t-esc="doc.amount_total"/></p>
+            </div>
+        </t>
+    </template>
+
+    <record id="action_report_facture_personnalise" model="ir.actions.report">
+        <field name="name">Facture Personnalisée</field>
+        <field name="model">facture.personnalise</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">facture.personnalise.report_facture_personnalise</field>
+        <field name="report_file">facture.personnalise.report_facture_personnalise</field>
+    </record>
+</odoo>

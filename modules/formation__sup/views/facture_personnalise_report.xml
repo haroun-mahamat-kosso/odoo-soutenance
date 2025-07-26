@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <!-- Définition du rapport QWeb personnalisé -->
+        <report 
+            id="facture_personnalise_report"
+            model="facture.personnalise"
+            string="Facture Personnalisée"
+            report_type="qweb-pdf"
+            name="formation__sup.facture_personnalise_report"
+            file="formation__sup.facture_personnalise_report"
+            attachment_use="False"/>
+
+        <!-- Définir l'action d'impression -->
+        <record id="action_print_facture" model="ir.actions.report">
+            <field name="name">Imprimer la Facture Personnalisée</field>
+            <field name="model">facture.personnalise</field>
+            <field name="report_name">formation__sup.facture_personnalise_report</field>
+            <field name="report_type">qweb-pdf</field>
+        </record>
+    </data>
+</odoo>

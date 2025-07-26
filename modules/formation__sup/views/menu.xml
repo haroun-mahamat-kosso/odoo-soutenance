@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- record -->
+
+    <!-- Formulaire étudiant -->
+    <record id="student_action" model="ir.actions.act_window">
+        <field name="name">Nouveau</field>
+        <field name="res_model">student</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="student_type_action" model="ir.actions.act_window">
+        <field name="name">Liste des étudiants</field>
+        <field name="res_model">student</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <!-- trainer -->
+    <record id="trainer_action" model="ir.actions.act_window">
+      <field name="name">Liste des formateurs</field>
+      <field name="res_model">trainer.formateur</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record id="trainer_action_type" model="ir.actions.act_window">
+      <field name="name">Liste des formateurs</field>
+      <field name="res_model">trainer.formateur</field>
+      <field name="view_mode">form</field>
+    </record>
+
+    <!-- trainingCourse -->
+    <record id="training_course_action" model="ir.actions.act_window">
+        <field name="name">Liste des formations</field>
+        <field name="res_model">training.course</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <record id="training_course_type_action" model="ir.actions.act_window">
+        <field name="name">Formation</field>
+        <field name="res_model">training.course</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- menu du module formation_sup -->
+    <menuitem id="menu_form_sup_root"
+      name="Formation Sup"
+      web_icon="om_hospital,static/description/logo_formation_sup.png"
+      sequence="0"/>
+    
+    <!-- menu du modèle student -->
+    <menuitem id="menu_student"
+      name="Etudiant"
+      parent="menu_form_sup_root"
+      sequence="2"/>
+
+    <menuitem id="menu_student_new"
+      name="Inscription"
+      action="student_type_action"
+      parent="menu_student"
+      sequence="2"/>
+    
+    
+    <menuitem id="menmenu_student_list"
+      name="Liste des étudiants"
+      action="student_action"
+      parent="menu_student"
+      sequence="1"/>
+    
+    <!-- menu du modèle trainer -->
+    <menuitem id="menu_trainer"
+      name="Formateur"
+      parent="menu_form_sup_root"
+      sequence="3"/>
+
+    <menuitem id="menu_trainer_new"
+      name="Ajouter un nouveau formateur"
+      action="trainer_action_type"
+      parent="menu_trainer"
+      sequence="0"/>
+    
+    <menuitem id="menmenu_trainer_list"
+      name="Liste des formateurs"
+      action="trainer_action"
+      parent="menu_trainer"
+      sequence="1"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  -->
+
+   
+
+    <menuitem id="menu_form_sup_root"
+      name="Formation Sup"
+      web_icon="om_hospital,static/description/logo_formation_sup.png"
+      sequence="0"/>
+    
+    <menuitem id="menu_training"
+      name="Training"
+      parent="menu_form_sup_root"
+      sequence="5"/>
+
+    <menuitem id="menu_training_course"
+      name="Training Courses"
+      action="training_course_action"
+      parent="menu_training"
+      sequence="10"/>
+    
+    
+    <menuitem id="menu_course_type"
+      name="Training Courses Types"
+      action="training_course_type_action"
+      parent="menu_form_sup_root"
+      sequence="10"/>
+    
+
+</odoo>

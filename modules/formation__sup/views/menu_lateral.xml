@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menu principal Modules -->
+    <menuitem id="menu_modules" name="Modules" sequence="1" />
+
+    <!-- Menu pour le module de formation -->
+    <menuitem id="menu_formation_sup" name="Formation Sup" parent="menu_modules" sequence="10" />
+
+    <!-- Sous-menu pour le module de formation -->
+    <menuitem id="menu_student_management" name="Gestion des Étudiants" parent="menu_formation_sup" sequence="10"
+        action="action_student_management"/>
+    <menuitem id="menu_training_management" name="Gestion des Formations" parent="menu_formation_sup" sequence="20"
+        action="action_training_management"/>
+
+    <!-- Menu pour le module de Vente -->
+    <menuitem id="menu_sale" name="Vente" parent="menu_modules" sequence="20" action="sale.action_orders"/>
+
+    <!-- Menu pour le module de Facturation -->
+    <menuitem id="menu_invoicing" name="Facturation" parent="menu_modules" sequence="30" action="action_move_line_select"/>
+
+    <!-- Menu pour le module de Discussion -->
+    <menuitem id="menu_discuss" name="Discussion" parent="menu_modules" sequence="40" action="action_discuss"/>
+
+    <!-- Menu pour le Dashboard -->
+    <menuitem id="menu_dashboard" name="Dashboard" parent="menu_modules" sequence="50" action="action_dashboard"/>
+
+    <!-- Actions pour les différents menus -->
+
+    <!-- Action pour la gestion des étudiants -->
+    <record id="action_student_management" model="ir.actions.act_window">
+        <field name="name">Gestion des Étudiants</field>
+        <field name="res_model">student</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Action pour la gestion des formations -->
+    <record id="action_training_management" model="ir.actions.act_window">
+        <field name="name">Gestion des Formations</field>
+        <field name="res_model">training.course</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Action pour la gestion des ventes -->
+    <record id="action_sale" model="ir.actions.act_window">
+        <field name="name">Vente</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Action pour la facturation -->
+    <record id="action_move_line_select" model="ir.actions.act_window">
+        <field name="name">Sélectionner les lignes de mouvement</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Action pour les discussions -->
+    <record id="action_discuss" model="ir.actions.act_window">
+        <field name="name">Discussion</field>
+        <field name="res_model">mail.thread</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <!-- Action pour le Dashboard -->
+    <record id="action_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">kanban</field>
+    </record>
+
+</odoo>

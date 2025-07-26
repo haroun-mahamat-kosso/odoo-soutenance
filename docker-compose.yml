@@ -1,0 +1,6 @@
+#version: '3'
+services:
+  erp:
+    ports:
+      - "8003:8069"
+    container_name: odoo

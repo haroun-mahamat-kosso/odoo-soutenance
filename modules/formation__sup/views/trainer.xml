@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vue Formulaire du formateur -->
+    <record id="view_trainer_view_form" model="ir.ui.view">
+        <field name="name">trainer.formateur.view.form</field>
+        <field name="model">trainer.formateur</field>
+        <field name="arch" type="xml">
+            <form string="Formateur">
+                <sheet>
+                    <!-- Onglets avec les informations du formateur -->
+                    <notebook>
+                        <!-- Onglet Informations Personnelles -->
+                        <page string="Informations Personnelles">
+                            <group>
+                                <field name="name" placeholder="Nom complet du formateur" 
+                                       class="oe_inline" string="Nom"/>
+                                <field name="dateNaiss" widget="date" placeholder="Date de naissance" 
+                                       class="oe_inline" string="Date de Naissance"/>
+                                <field name="phone" placeholder="Numéro de téléphone" 
+                                       class="oe_inline" string="Téléphone"/>
+                            </group>
+                        </page>
+
+                        <!-- Onglet Formation et Compétences -->
+                        <page string="Formation et Compétences">
+                            <group>
+                                <field name="is_trainer" string="Est Formateur ?"
+                                       help="Cochez cette case si la personne est un formateur" 
+                                       widget="boolean_toggle" />
+                                <field name="specialite" attrs="{'invisible' : [('is_trainer', '=', False)]}" 
+                                       placeholder="Spécialité du formateur" string="Spécialité"
+                                       class="oe_inline"/>
+                                <field name="qualification" attrs="{'invisible' : [('is_trainer', '=', False)]}" 
+                                       placeholder="Qualification professionnelle" string="Qualification"
+                                       class="oe_inline"/>
+                                <field name="anneeExperience" attrs="{'invisible' : [('is_trainer', '=', False)]}" 
+                                       placeholder="Année d'expérience" string="Année d'expérience"
+                                       class="oe_inline"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue Liste des formateurs -->
+    <record id="view_trainer_view_tree" model="ir.ui.view">
+        <field name="name">trainer.formateur.view.tree</field>
+        <field name="model">trainer.formateur</field>
+        <field name="arch" type="xml">
+            <tree string="Liste des Formateurs">
+                <!-- Colonnes visibles dans la vue liste -->
+                <field name="name" string="Nom"/>
+                <field name="dateNaiss" string="Date de Naissance"/>
+                <field name="phone" string="Téléphone"/>
+                <field name="is_trainer" string="Formateur"/>
+                <field name="specialite" string="Spécialité"/>
+                <field name="qualification" string="Qualification"/>
+                <field name="anneeExperience" string="Année d'Expérience"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action pour afficher la liste des formateurs -->
+    <record id="trainer_action" model="ir.actions.act_window">
+        <field name="name">Liste des Formateurs</field>
+        <field name="res_model">trainer.formateur</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

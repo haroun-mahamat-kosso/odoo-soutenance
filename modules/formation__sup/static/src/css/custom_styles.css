@@ -1,0 +1,110 @@
+/* Menu principal */
+
+/* Personnalisation du bloc contenant la marque ou logo de l'application dans le menu */
+.o_menu_brand {
+    background-color: #4C9ED9; /* Bleu clair */
+    color: #FFFFFF; /* Texte blanc */
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    white-space: nowrap;
+    transition: background-color 0.3s ease; /* Transition douce pour le changement de couleur */
+}
+
+/* Effet au survol du menu marque */
+.o_menu_brand:hover {
+    background-color: #2A7CC2; /* Bleu foncé au survol */
+}
+
+/* Personnalisation de la barre de navigation principale */
+.o_main_navbar {
+    background-color: #4C9ED9;
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre subtile sous la barre */
+}
+
+/* Effet au survol de la barre de navigation */
+.o_main_navbar:hover {
+    background-color: #2A7CC2;
+}
+
+/* Personnalisation des éléments du menu */
+.o_menu_item {
+    background-color: #4C9ED9;
+    color: #FFFFFF;
+    padding: 12px 25px; /* Augmenté pour plus d'espace */
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px; /* Plus d'espace entre les éléments */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.2s ease; /* Transition améliorée */
+}
+
+/* Effet au survol des éléments du menu */
+.o_menu_item:hover {
+    background-color: #2A7CC2;
+    transform: translateY(-4px); /* Effet d'élévation */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Ombre portée au survol */
+}
+
+/* Personnalisation des sous-éléments du menu */
+.o_menu_item_sub {
+    background-color: #6BB4E7; /* Bleu clair mais plus doux */
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    display: block;
+    margin: 5px 0;
+    transition: background-color 0.3s ease; /* Transition douce */
+}
+
+/* Effet au survol des sous-éléments */
+.o_menu_item_sub:hover {
+    background-color: #2A7CC2;
+}
+
+/* Personnalisation du menu racine */
+.o_menu_root {
+    background-color: #4C9ED9;
+    padding: 15px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Effet de focus pour l'accessibilité */
+.o_menu_item:focus, .o_menu_item_sub:focus {
+    outline: none; /* Retire le contour de focus par défaut */
+    box-shadow: 0 0 0 3px rgba(50, 150, 255, 0.5); /* Bordure bleue autour de l'élément en focus */
+}
+
+/* Texte du menu principal */
+.o_menu_root .menu_text {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 0 10px;
+    white-space: nowrap;
+}
+
+/* Ajouter une bordure fine autour des éléments */
+.o_menu_item, .o_menu_item_sub {
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease; /* Transition douce pour la bordure */
+}
+
+/* Change la bordure au survol */
+.o_menu_item:hover, .o_menu_item_sub:hover {
+    border-color: #FFFFFF; /* Bordure blanche au survol */
+}

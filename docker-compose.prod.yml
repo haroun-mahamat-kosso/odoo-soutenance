@@ -1,0 +1,17 @@
+#version: '3'
+services:
+  erp:
+    build: .
+    ports:
+      - "8080:8069"
+    restart: always
+    volumes:
+      - ./modules:/mnt/extra-addons/
+      - ./odoo_prod_conf:/etc/odoo
+    container_name: test_erp
+    networks:
+      - erpnet
+
+networks:
+  erpnet:
+    driver: bridge

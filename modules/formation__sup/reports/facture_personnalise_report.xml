@@ -1,0 +1,62 @@
+<odoo>
+    <template id="facture_personnalise_report">
+        <t t-call="web.basic_layout">
+            <!-- En-tête de la facture -->
+            <div class="header">
+                <h2 class="text-center">Facture Personnalisée</h2>
+                <div class="row">
+                    <div class="col-6">
+                        <strong>Numéro de facture:</strong> <span t-esc="doc.name"/>
+                    </div>
+                    <div class="col-6 text-right">
+                        <strong>Date:</strong> <span t-esc="doc.date"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <strong>Client:</strong> <span t-esc="doc.customer_id.name"/>
+                    </div>
+                    <div class="col-6 text-right">
+                        <strong>État:</strong> <span t-esc="doc.state"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lignes de la facture -->
+            <div class="invoice-lines mt-4">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Quantité</th>
+                            <th>Prix Unitaire</th>
+                            <th>Montant</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="doc.invoice_lines" t-as="line">
+                            <td t-esc="line.product_id.name"/>
+                            <td t-esc="line.quantity"/>
+                            <td t-esc="line.price_unit"/>
+                            <td t-esc="line.amount"/>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Total de la facture -->
+            <div class="total mt-4">
+                <div class="row">
+                    <div class="col-6">
+                        <strong>Total:</strong> <span t-esc="doc.amount_total"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer mt-4">
+                <p class="text-center">Merci pour votre commande!</p>
+            </div>
+        </t>
+    </template>
+</odoo>

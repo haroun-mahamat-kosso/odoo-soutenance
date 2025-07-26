@@ -1,0 +1,64 @@
+<odoo>
+    <!-- Form View for Student -->
+    <record id="view_student_form" model="ir.ui.view">
+        <field name="name">student.form.view</field>
+        <field name="model">student</field>
+        <field name="arch" type="xml">
+            <form string="Etudiant">
+                <header>
+                    <button name="creation_bonCommande_facture" type="object" string="Commende vente et facture" class="btn-success"/>
+                    <!-- Ajout du bouton pour ouvrir la facture -->
+                    <button name="open_invoice_window" type="object" string="Créer et éditer facture" class="btn-primary"/>
+                    <button name="create_custom_invoice" type="object" string="Créer facture personnalisée" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group col="2">
+                            <field name="name" string="Nom" placeholder="Entrez le nom de l'étudiant" required="1"/>
+                            <field name="dateNaiss" string="Date de naissance" placeholder="Sélectionner la date de naissance"/>
+                        </group>
+
+                        <group col="2">
+                            <field name="phone" string="Téléphone" placeholder="Numéro de téléphone"/>
+                            <field name="is_student" string="Apprenant" />
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Formations">
+                            <field name="courses" widget="many2many_tags" options="{'no_create': True}" placeholder="Sélectionner les formations suivies" />
+                        </page>
+
+                        <page string="Commande de Vente">
+                            <field name="sale_order_id" readonly="1" options="{'no_create': True}" placeholder="Commande de vente associée" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View for Student -->
+    <record id="view_student_tree" model="ir.ui.view">
+        <field name="name">student.tree.view</field>
+        <field name="model">student</field>
+        <field name="arch" type="xml">
+            <tree string="Etudiants">
+                <field name="name" string="Nom"/>
+                <field name="dateNaiss" string="Date de naissance"/>
+                <field name="phone" string="Téléphone"/>
+                <field name="is_student" string="Apprenant"/>
+                <field name="courses" string="Formations"/>
+                <field name="sale_order_id" string="Commande de vente"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for Student View -->
+    <record id="student_action" model="ir.actions.act_window">
+        <field name="name">Etudiants</field>
+        <field name="res_model">student</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

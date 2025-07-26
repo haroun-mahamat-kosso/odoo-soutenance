@@ -1,0 +1,22 @@
+.form-group {
+    margin-bottom: 20px;
+}
+
+.oe_field_widget {
+    padding: 5px 10px;
+}
+
+.oe_form_sheet {
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}
+
+.oe_button {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+.oe_field_widget {
+    font-size: 14px;
+}

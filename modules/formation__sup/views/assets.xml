@@ -1,0 +1,6 @@
+<odoo>
+    <!-- Déclaration des assets backend -->
+    <template id="assets_backend" name="Custom Assets">
+        <link rel="stylesheet" href="/formation__sup/static/src/css/custom_styles.css"/>
+    </template>
+</odoo>

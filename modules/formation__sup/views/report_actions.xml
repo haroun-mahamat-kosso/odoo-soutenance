@@ -1,0 +1,8 @@
+<odoo>
+    <record id="action_report_custom_invoice" model="ir.actions.report">
+        <field name="name">Facture Personnalisée</field>
+        <field name="model">custom.invoice</field>
+        <field name="report_name">formation__sup.custom_invoice_report</field>
+        <field name="report_type">qweb-pdf</field>
+    </record>
+</odoo>

@@ -1,0 +1,23 @@
+/* Fixer le menu sur le côté */
+.o_sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #f8f8f8;
+    padding: 10px;
+    z-index: 9999;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Assurer que les éléments du menu soient bien espacés */
+.o_sidebar .o_menu_item {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+/* Menu actif */
+.o_sidebar .o_menu_item.active {
+    background-color: #e0e0e0;
+}

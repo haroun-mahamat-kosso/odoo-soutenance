@@ -1,0 +1,102 @@
+<odoo>
+    <!-- Form View for Training Course -->
+    <record id="view_training_course_view_form" model="ir.ui.view">
+        <field name="name">training.course.view.form</field>
+        <field name="model">training.course</field>
+        <field name="arch" type="xml">
+            <form string="Formation">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Nom de la Formation" placeholder="Nom de la formation" required="1"/>
+                            <field name="description" string="Description" placeholder="Détails de la formation" />
+                        </group>
+                        <group>
+                            <field name="prixFormation" string="Prix de la Formation" placeholder="Prix de la formation" />
+                            <field name="start_date" string="Date de début" widget="datetime" required="1"/>
+                            <field name="end_date" string="Date de fin" widget="datetime" required="1"/>
+                            <field name="duration" string="Durée" placeholder="Durée de la formation" />
+                        </group>
+                        <group>
+                            <field name="state" string="Statut" widget="statusbar" options="{'clickable': True}" />
+                            <field name="product_id" string="Produit Associé" domain="[('type', '=', 'service')]" />
+                            <field name="price" string="Prix Calculé" readonly="1" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View for Training Course -->
+    <record id="view_training_course_view_tree" model="ir.ui.view">
+        <field name="name">training.course.view.tree</field>
+        <field name="model">training.course</field>
+        <field name="arch" type="xml">
+            <tree string="Formations">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="prixFormation"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="duration"/>
+                <field name="state"/>
+                <field name="product_id"/>
+                <field name="price" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Kanban View for Training Course -->
+    <record id="view_training_course_view_kanban" model="ir.ui.view">
+        <field name="name">training.course.view.kanban</field>
+        <field name="model">training.course</field>
+        <field name="arch" type="xml">
+            <kanban string="Formations">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="state"/>
+
+                <!-- Define the kanban card appearance -->
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #f0f8ff; padding: 20px; margin: 10px;">
+                            <div class="oe_kanban_content">
+                                <!-- Display the name -->
+                                <h3 style="font-size: 18px; font-weight: bold; color: #4B8B3B;" t-esc="record.name.value"/>
+
+                                <!-- Display the description -->
+                                <div class="oe_kanban_description" style="font-size: 14px; color: #555;" t-esc="record.description.value"/>
+                                
+                                <!-- Display start and end date -->
+                                <div style="margin-top: 10px;">
+                                    <span style="font-size: 12px; color: #888;" t-esc="record.start_date.value"/> 
+                                    - 
+                                    <span style="font-size: 12px; color: #888;" t-esc="record.end_date.value"/>
+                                </div>
+
+                                <!-- Display the state with a progress bar if available -->
+                                <div class="oe_kanban_status" style="margin-top: 10px;">
+                                    <span style="font-size: 14px; font-weight: bold; color: #6fa3f7;" t-esc="record.state.value"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Action to open the training course records -->
+    <record id="training_course_action" model="ir.actions.act_window">
+        <field name="name">Formations</field>
+        <field name="res_model">training.course</field>
+        <field name="view_mode">kanban,tree,form</field> <!-- Added kanban view here -->
+        <field name="target">current</field>
+    </record>
+
+    <!-- Menu item for Training Courses -->
+    <menuitem id="menu_training_courses" name="Formations" parent="base.menu_custom"/>
+</odoo>

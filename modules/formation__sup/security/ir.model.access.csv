@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.training.course,acces_training_course,formation__sup.model_training_course,base.group_user,1,1,1,1
+access.learner.person,acces_learner_person,formation__sup.model_learner_person,base.group_user,1,1,1,1
+access.student,acces_student,formation__sup.model_student,base.group_user,1,1,1,1
+access.trainer.formateur,acces_trainer_formateur,formation__sup.model_trainer_formateur,base.group_user,1,1,1,1
+access.custom.invoice,acces_custom_invoice,formation__sup.model_custom_invoice,base.group_user,1,1,1,1
+access.custom.invoice.line,acces_custom_invoice_line,formation__sup.model_custom_invoice_line,base.group_user,1,1,1,1
