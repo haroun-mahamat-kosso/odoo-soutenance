@@ -60,9 +60,9 @@
     echo "Démarrage du serveur Odoo en mode normal..."
     # Exécute la commande Odoo principale pour un fonctionnement normal
     # Le --master-passwd n'est PAS nécessaire ici car la DB est déjà initialisée
-    # IMPORTANT : La commande "odoo" est passée via "$@" depuis le Dockerfile CMD.
-    # Nous ne devons PAS la spécifier explicitement ici.
-    exec /usr/bin/python3 "$@" \
+    # IMPORTANT : Nous spécifions explicitement le chemin complet de l'exécutable Odoo.
+    # Nous ne passons PAS "$@" ici car il contiendrait "odoo" en double.
+    exec /usr/bin/python3 /usr/bin/odoo \
         --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
         --db_host="$HOST" \
         --db_port="$PORT" \
