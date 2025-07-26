@@ -32,13 +32,12 @@
         echo "La base de données Odoo '$DB_NAME' n'est PAS initialisée. Tentative d'initialisation du module 'base'..."
         # Initialise la base de données avec le module 'base'
         # --stop-after-init : Odoo s'arrêtera après l'initialisation
-        # --addons-path : assure que les modules sont trouvés
         # --no-http : empêche le démarrage du serveur HTTP pendant l'initialisation
         # --master-passwd est nécessaire UNIQUEMENT pour les opérations d'initialisation/mise à jour de la DB
-        /usr/bin/python3 /usr/bin/odoo -d "$DB_NAME" \
+        # Utilise le fichier de configuration et retire --addons-path d'ici
+        /usr/bin/python3 /usr/bin/odoo -c /etc/odoo/odoo.conf -d "$DB_NAME" \
             --init base \
             --stop-after-init \
-            --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
             --db_host="$HOST" \
             --db_port="$PORT" \
             --db_user="$USER" \
@@ -60,12 +59,11 @@
     echo "Démarrage du serveur Odoo en mode normal..."
     # Exécute la commande Odoo principale pour un fonctionnement normal
     # Le --master-passwd n'est PAS nécessaire ici car la DB est déjà initialisée
-    # IMPORTANT : Exécutez directement le binaire Odoo avec ses arguments.
-    # Le shebang dans /usr/bin/odoo se chargera d'appeler python3.
-    exec /usr/bin/odoo \
-        --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
+    # Utilise le fichier de configuration et retire --addons-path d'ici
+    exec /usr/bin/python3 /usr/bin/odoo -c /etc/odoo/odoo.conf \
         --db_host="$HOST" \
         --db_port="$PORT" \
         --db_user="$USER" \
-        --db_password="$PASSWORD"
+        --db_password="$PASSWORD" \
+        "$@" # Passe les arguments du CMD (ici "odoo" seul)
     
