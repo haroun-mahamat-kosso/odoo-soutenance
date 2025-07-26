@@ -34,11 +34,10 @@
         # --stop-after-init : Odoo s'arrêtera après l'initialisation
         # --no-http : empêche le démarrage du serveur HTTP pendant l'initialisation
         # --master-passwd est nécessaire UNIQUEMENT pour les opérations d'initialisation/mise à jour de la DB
-        # IMPORTANT : Spécifiez explicitement le chemin des addons ici
+        # IMPORTANT : --addons-path est maintenant géré par la variable d'environnement ODOO_ADDONS_PATH
         /usr/bin/python3 /usr/bin/odoo -c /etc/odoo/odoo.conf -d "$DB_NAME" \
             --init base \
             --stop-after-init \
-            --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
             --db_host="$HOST" \
             --db_port="$PORT" \
             --db_user="$USER" \
@@ -60,9 +59,8 @@
     echo "Démarrage du serveur Odoo en mode normal..."
     # Exécute la commande Odoo principale pour un fonctionnement normal
     # Le --master-passwd n'est PAS nécessaire ici car la DB est déjà initialisée
-    # IMPORTANT : Spécifiez explicitement le chemin des addons ici
+    # IMPORTANT : --addons-path est maintenant géré par la variable d'environnement ODOO_ADDONS_PATH
     exec /usr/bin/odoo -c /etc/odoo/odoo.conf \
-        --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
         --db_host="$HOST" \
         --db_port="$PORT" \
         --db_user="$USER" \
