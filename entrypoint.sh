@@ -5,7 +5,7 @@
 
     # Construit l'URL de la base de données à partir des variables d'environnement
     # Cette syntaxe est plus robuste pour psql
-    DATABASE_URL="postgresql://${USER}:${PGPASSWORD}@${HOST}:${PORT}/${DB_NAME}"
+    DATABASE_URL="postgresql://${USER}:${PGPASSWORD}@${HOST}:${DB_PORT}/${DB_NAME}" # Utilise $DB_PORT ici
 
     # Fonction pour vérifier si la base de données est initialisée
     # Retourne 0 si la table 'ir_module_module' existe (DB initialisée), 1 sinon.
@@ -17,7 +17,7 @@
         psql "${DATABASE_URL}" -tAc "SELECT 1 FROM pg_tables WHERE schemaname = 'public' AND tablename = 'ir_module_module';"
     }
 
-    echo "Attente que la base de données PostgreSQL soit prête à ${HOST}:${PORT}..."
+    echo "Attente que la base de données PostgreSQL soit prête à ${HOST}:${DB_PORT}..." # Utilise $DB_PORT ici
     # Boucle d'attente pour la base de données
     until psql "${DATABASE_URL}" -c '\q'; do
       >&2 echo "Postgres est indisponible - mise en veille..."
@@ -32,11 +32,11 @@
         --init base \
         --stop-after-init \
         --db_host="$HOST" \
-        --db_port="$PORT" \
+        --db_port="$DB_PORT" \
         --db_user="$USER" \
         --db_password="$PASSWORD" \
         --no-http \
-        --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons # Réintroduit pour l'initialisation
+        --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
 
     # Vérifie si la commande d'initialisation a réussi
     if [ $? -eq 0 ]; then
@@ -53,7 +53,7 @@
     exec /usr/bin/odoo -c /etc/odoo/odoo.conf \
         --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
         --db_host="$HOST" \
-        --db_port="$PORT" \
+        --db_port="$DB_PORT" \
         --db_user="$USER" \
         --db_password="$PASSWORD" \
         "$@" # Passe les arguments du CMD (ici "odoo" seul)
