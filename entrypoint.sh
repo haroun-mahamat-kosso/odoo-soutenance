@@ -35,7 +35,8 @@
         --db_port="$PORT" \
         --db_user="$USER" \
         --db_password="$PASSWORD" \
-        --no-http # Suppression de --master-passwd
+        --no-http \
+        --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons # Réintroduit pour l'initialisation
 
     # Vérifie si la commande d'initialisation a réussi
     if [ $? -eq 0 ]; then
@@ -48,8 +49,9 @@
     echo "Démarrage du serveur Odoo en mode normal..."
     # Exécute la commande Odoo principale pour un fonctionnement normal
     # Le --master-passwd n'est PAS nécessaire ici car la DB est déjà initialisée
-    # IMPORTANT : --addons-path est maintenant géré par la variable d'environnement ODOO_ADDONS_PATH
+    # IMPORTANT : Réintroduit --addons-path pour le démarrage normal du serveur
     exec /usr/bin/odoo -c /etc/odoo/odoo.conf \
+        --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
         --db_host="$HOST" \
         --db_port="$PORT" \
         --db_user="$USER" \
