@@ -14,5 +14,5 @@ COPY ./odoo_dev_conf/odoo.conf /etc/odoo/odoo.conf
 # Définit le script d'entrée comme point de démarrage du conteneur, en l'exécutant avec bash
 # C'est crucial pour s'assurer que le script est interprété correctement et que set -ex fonctionne
 ENTRYPOINT ["bash", "/usr/local/bin/entrypoint.sh"]
-# La commande par défaut passée au script d'entrée (maintenant vide, car entrypoint.sh gère le lancement d'odoo)
-CMD []
+# La commande par défaut passée au script d'entrée
+CMD ["odoo"]
